@@ -146,7 +146,7 @@ function mergeMultisigTransactions(multisigTxnBlobs) {
         newSubsigs = unisig.msig.subsig.map((uniSubsig, index) => {
             let current = newSubsigs[index];
             if (current.s) {
-                if (uniSubsig.s && Buffer.compare(uniSubsig.s, current.s) !== 0) {
+                if (uniSubsig.s && Buffer.compare(Buffer.from(uniSubsig.s), Buffer.from(current.s)) !== 0) {
                     // mismatch
                     throw ERROR_MULTISIG_MERGE_SIG_MISMATCH;
                 }
